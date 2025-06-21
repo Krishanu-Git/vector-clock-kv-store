@@ -1,0 +1,25 @@
+version: "3"
+services:
+  node1:
+    build: .
+    ports:
+      - "5001:1234"
+    environment:
+      - NODE_ID=node1
+      - OTHER_NODES=http://node2:1234,http://node3:1234
+
+  node2:
+    build: .
+    ports:
+      - "5002:1234"
+    environment:
+      - NODE_ID=node2
+      - OTHER_NODES=http://node1:1234,http://node3:1234
+
+  node3:
+    build: .
+    ports:
+      - "5003:1234"
+    environment:
+      - NODE_ID=node3
+      - OTHER_NODES=http://node1:1234,http://node2:1234
